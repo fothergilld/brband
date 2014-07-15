@@ -1,0 +1,327 @@
+<html>
+<head>
+<title>Broken Records - Official Site</title>
+<meta name="description" content="Official site of the Edinburgh-based band Broken Records. Third album 'Weights & Pulleys' Out Now!"/>
+<link rel="canonical" href="http://www.brokenrecordsband.com/" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--
+    Formatted for readability
+  -->
+  <meta
+    name="viewport"
+    content="
+      width=device-width,
+      initial-scale=1,
+      minimum-scale=1,
+      maximum-scale=1
+    "
+  />
+
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='unsemantic-grid-responsive.css') }}">
+</head>
+	<header>
+	<div class="grid-container">
+		<div class="header-container grid-parent">
+			<div class="header-image">
+			<img width="100%" src="{{ url_for('static', filename='img/br_logo_grey.png') }}"/>
+			</div>
+		</div>
+	<div>
+	</header>
+    <body>
+	<!--ga code-->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-6115082-1', 'brokenrecordsband.com');
+	  ga('send', 'pageview');
+
+	</script>
+	<!--eo.ga code-->
+
+	<!--ga custom events-->
+		<script>	
+		//$('#download-button').on('submit', function() {
+		//	ga('send', 'event', 'button', 'click', 'stripe-buttons');
+		//});
+		</script>
+	<!--eo.ga custom events-->
+	
+		<div class="container">
+		<div class="grid-container">
+			<div class="grid-40">
+			
+			<img width="100%" src="{{ url_for('static', filename='img/wandp_med.png') }}"/>
+
+			</div>
+			<div class="grid-60">
+				<h1>Weights & Pulleys - Out Now!</h1>
+				<p>Following on from the critically acclaimed 'Let Me Come Home', May 19th marks the return of Broken Records with the release of their eagerly awaited third album <strong>'Weights & Pulleys'</strong>.</p>
+				
+				<p>"A better-than-ever band emerges from the shadows" – <strong>Clash Magazine, 8/10</strong></p>
+				<p>"one word to describe this album and that's 'solid': skilfull songwriting, immaculately executed, consistently excellent” – <strong>The Line of Best Fit, 8/10</strong></p>
+				<p>"Fiery brass and soaring dynamics soundtracking an irresistible leap into the abyss" – <strong>Uncut</strong>
+			
+			<!--DIGITAL DOWNLOAD-->
+				<h2>Digital Download - £7.99</h2>
+				<p> - 320 kbps MP3<br>
+				- DRM Free
+				</p>
+				<!--<span class="price">£7.99</span>-->
+					<form id="download-button" action="/buy" method="POST">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=799
+							data-name="Broken Records"
+							data-description="Weights & Pulleys MP3 Album (£{{ product_1.price }})"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Download Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_1.id }}" />
+						<input type="hidden" name="product_cost" value="799" />
+						<input type="hidden" name="product_name" value="Weights & Pulleys MP3 Album" />
+					</form>
+				<p>Or purchase via: <a href="http://smarturl.it/6exhp4" alt="iTunes - Weights & Pulleys">iTunes</a> | <a href="http://smarturl.it/yf7pap" alt="Amazon - Weights & Pulleys">Amazon</a></p>
+			<!--EO.DIGITAL DOWNLOAD-->
+			
+			<!--VINYL PURCHASE-->
+				<h2>12" Vinyl - £16</h2>
+				<p>Now in stock! Includes immediate MP3 download</p>
+
+				<select id="vinyl-shipping">
+					<option value=''>Please select shipping:</option>
+					<option id="uk" value="350">UK - £3.50</option>
+					<option value="700">US - £7.00</option>
+					<option value="700">EU - £7.00</option>
+				</select>
+				
+				
+				<!--dummy button-->
+				
+				<button type="submit" id="vinyl-dummy" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Buy Vinyl & Download Now</span></button>
+				<!--eo.dummy button-->
+						
+				<script>
+				
+				$("#vinyl-dummy").click(function() {
+					$("#vinyl-warning").show();	
+				});
+				
+				$("#vinyl-shipping").change(function() {
+					vinylShipping = $(this).val();
+					vinylButtonId = "#vinyl-button-" + $(this).val();
+					$("#vinyl-price").show("slow");
+					//method for changing dom values - currently not passing to stripe
+					//var el = document.querySelector('#test');
+					//el.dataset.amount = 1600+parseInt(vinylShipping)
+					$("[id^=vinyl-button]").hide();
+					$("#vinyl-dummy").hide();
+					$("#vinyl-warning").hide();
+					$(vinylButtonId).show();	
+					$("#vinyl-ship-price").html((parseFloat(vinylShipping)/100).toFixed(2));
+				});
+				</script>					
+						
+				
+			
+					<form id="vinyl-button-350" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=1950
+							data-name="Broken Records"
+							data-description="{{ product_2.name }} (£19.50)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Vinyl & Download Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_2.id }}" />
+						<input type="hidden" name="product_cost" value="1950" />
+					</form>
+					
+					<form  id="vinyl-button-700" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=2300
+							data-name="Broken Records"
+							data-description="{{ product_2.name }} (£23)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Vinyl & Download Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_2.id }}" />
+						<input type="hidden" name="product_cost" value="2300" />
+					</form>
+					
+					<form  id="vinyl-button-us" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=2300
+							data-name="Broken Records"
+							data-description="{{ product_2.name }} (£23)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Vinyl & Download Now - US"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_2.id }}" />
+						<input type="hidden" name="product_cost" value="2300" />
+					</form>
+				<p id="vinyl-price" style="display:none">Total Cost: £16 + <span id="vinyl-ship-price"></span> P&P</p>
+				<!--shipping alert-->
+				<br>
+				<span id="vinyl-warning" style="display:none">Please select a shipping destination</span>
+				<!--eo.shipping alert-->
+				<!--
+				<p>Or pay via PayPal:</p>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="VSEPEMRBTNTZJ">
+					<table>
+					<tr><td></tr><tr><td><select name="os0">
+						<option value="UK Delivery">UK Delivery £19.50 GBP</option>
+						<option value="EU Delivery">EU Delivery £23.00 GBP</option>
+						<option value="US/ROW Delivery">US/ROW Delivery £23.00 GBP</option>
+					</select> </td></tr>
+					</table>
+					<input type="hidden" name="currency_code" value="GBP">
+					<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+				</form>
+						-->			
+
+			<!--EO.VINYL PURCHASE-->
+
+			<!--CD PURCHASE-->
+				<h2>CD - £10</h2>
+				
+				<p>Gatefold Digipack</p>
+
+				<select id="cd-shipping">
+					<option value=''>Please select shipping:</option>
+					<option id="uk" value="150">UK - £1.50</option>
+					<option value="450">US - £4.50</option>
+					<option value="300">EU - £3.00</option>
+				</select>
+				
+				<!--shipping alert-->
+				<span id="cd-warning" style="display:none">Please select a shipping destination</span>
+				<!--eo.shipping alert-->
+				
+				<!--dummy button-->
+				<button type="submit" id="cd-dummy" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Buy Now</span></button>
+				<!--eo.dummy button-->
+						
+				<script>
+				
+				$("#cd-dummy").click(function() {
+					$("#cd-warning").show();	
+				});
+				
+				$("#cd-shipping").change(function() {
+					cdShipping = $(this).val();
+					cdButtonId = "#cd-button-" + $(this).val();
+					$("#cd-price").show("slow");
+					$("[id^=cd-button]").hide();
+					$("#cd-dummy").hide();
+					$(cdButtonId).show();	
+					$("#cd-ship-price").html((parseFloat(cdShipping)/100).toFixed(2));
+					 $("html, body").animate({ scrollTop: $(document).height() });
+				});
+				</script>					
+				
+					<form id="cd-button-150" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=1150
+							data-name="Broken Records"
+							data-description="{{ product_3.name }} (£11.50)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_3.id }}" />
+						<input type="hidden" name="product_cost" value="1150" />
+					</form>
+					
+					<form  id="cd-button-300" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=1300
+							data-name="Broken Records"
+							data-description="{{ product_3.name }} (£13.00)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_3.id }}" />
+						<input type="hidden" name="product_cost" value="1300" />
+					</form>
+					
+					<form  id="cd-button-450" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=1450
+							data-name="Broken Records"
+							data-description="{{ product_3.name }} (£14.50)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Now"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_3.id }}" />
+						<input type="hidden" name="product_cost" value="1450" />
+					</form>
+					
+					<!--<form  id="cd-button-us" action="/buy" method="POST" style="display:none">
+						<script
+							src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-key="{{ config.STRIPE_PUBLIC_KEY }}"
+							data-amount=1300
+							data-name="Broken Records"
+							data-description="{{ product_3.name }} (£13.00)"
+							data-shipping-address=true
+							data-billing-address=true
+							data-currency="GBP"
+							data-label="Buy Vinyl & Download Now - US"
+							>
+						</script>
+						<input type="hidden" name="product_id" value="{{ product_3.id }}" />
+						<input type="hidden" name="product_cost" value="1300" />
+					</form>-->
+									
+				<p id="cd-price" style="display:none">Total Cost: £10 + <span id="cd-ship-price"></span> P&P</p>
+	
+			<!--EO.cd PURCHASE-->
+			<div id="contact">
+			For any enquiries, please contact <a href="mailto:hello@brokenrecordsband.com">hello@brokenrecordsband.com</a></p>
+			</div>	
+			</div>
+		</div>
+
+		</div>
+    </body>
+</html>

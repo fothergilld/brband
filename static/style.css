@@ -1,0 +1,88 @@
+.header-image {
+	margin-top:10px;
+	padding-bottom:3px;
+	max-width:480px;
+	}
+	
+.header-container {
+	border-bottom:2px solid #B6B6A3;
+}
+
+body {
+	/*margin:0 auto;
+	margin-top: 30px;
+	width:1020px;*/
+	font-family:sans-serif;
+	color:#636363
+}
+
+.container {
+	margin-top:30px;	
+}
+
+h1 {
+font-family: sans-serif;
+font-weight: bold;
+text-transform: uppercase;
+font-size: 24px;
+/*color:#B6B6A3;*/
+}
+
+h2 {
+font-family: sans-serif;
+font-weight: normal;
+text-transform: uppercase;
+font-size: 20px;
+}
+
+p {
+font-size: 14px;
+line-height: 19px;
+}
+
+.price {
+font-size: 18px;
+line-height: 23px;
+}
+
+ul{
+	list-style:none;
+	padding:0;
+}
+
+li{
+	margin: 10px 00px
+}
+
+.overlayView.active {
+/*fixes double scroll bar on stripe overlay*/
+overflow: hidden;
+}
+
+p#vinyl-price {
+margin-bottom: 0px;
+margin-top: 0px;
+}
+
+select#vinyl-shipping {
+margin-bottom: 16px;
+}
+
+p#cd-price {
+margin-bottom: 30px;
+margin-top: 0px;
+}
+
+select#cd-shipping {
+margin-bottom: 16px;
+}
+
+form[id*='-button-'] {
+	display:inline;
+}
+
+#contact{
+ margin-top:50px;
+ font-size:12px;
+ float: right;
+}
