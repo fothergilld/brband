@@ -38,19 +38,12 @@
 	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 	  ga('create', 'UA-6115082-1', 'brokenrecordsband.com');
+	  ga('require', 'displayfeatures');
 	  ga('send', 'pageview');
 
 	</script>
 	<!--eo.ga code-->
 
-	<!--ga custom events-->
-		<script>	
-		//$('#download-button').on('submit', function() {
-		//	ga('send', 'event', 'button', 'click', 'stripe-buttons');
-		//});
-		</script>
-	<!--eo.ga custom events-->
-	
 		<div class="container">
 		<div class="grid-container">
 			<div class="grid-40">
@@ -65,6 +58,8 @@
 				<p>"A better-than-ever band emerges from the shadows" – <strong>Clash Magazine, 8/10</strong></p>
 				<p>"one word to describe this album and that's 'solid': skilfull songwriting, immaculately executed, consistently excellent” – <strong>The Line of Best Fit, 8/10</strong></p>
 				<p>"Fiery brass and soaring dynamics soundtracking an irresistible leap into the abyss" – <strong>Uncut</strong>
+				
+
 			
 			<!--DIGITAL DOWNLOAD-->
 				<h2>Digital Download - £7.99</h2>
@@ -103,16 +98,23 @@
 					<option value="700">EU - £7.00</option>
 				</select>
 				
-				
+					<!--ga custom events-->
+					<script>
+						$(".stripe-button-el").click(function() {
+							ga('send', 'event', 'buy-button', 'click', 'stripe-buttons');
+						});
+					</script>	
+					<!--eo.ga custom events-->
+					
 				<!--dummy button-->
 				
 				<button type="submit" id="vinyl-dummy" class="stripe-button-el" style="visibility: visible;"><span style="display: block; min-height: 30px;">Buy Vinyl & Download Now</span></button>
 				<!--eo.dummy button-->
 						
 				<script>
-				
 				$("#vinyl-dummy").click(function() {
-					$("#vinyl-warning").show();	
+					$("#vinyl-warning").show();
+					ga('send', 'event', 'purchase-button', 'click', 'stripe-buttons');
 				});
 				
 				$("#vinyl-shipping").change(function() {

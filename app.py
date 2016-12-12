@@ -3,7 +3,7 @@ from bull import app, db
 import os
 import jinja2
 from os.path import abspath, dirname, join
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, render_template
 
 template_loc = os.path.abspath(os.path.join(os.path.split(os.path.abspath(__file__))[0], 'templates'))
 
@@ -25,7 +25,15 @@ def redirect_url():
 for url in redirect_urls:
     app.add_url_rule(url, url, redirect_url)
 
+@app.route('/')
+def show_entries():
+  return render_template('splash.html')
 
+def show_entries():
+    db = get_db()
+    cur = db.execute('select title, text from entries order by id desc')
+    entries = cur.fetchall()
+    return render_template('show_entries.html', entries=entries)
 
 def get_app():
     return app

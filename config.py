@@ -43,3 +43,6 @@ STRIPE_SECRET_KEY = 'sk_live_wiHmIlBCGL4r7iL6LXYzSG7C'
 #STRIPE_PUBLIC_KEY = 'pk_test_tE1j955ur757iZnr0upPLk4f'
 STRIPE_PUBLIC_KEY = 'pk_live_9QeCd98NcIScqM3PeX81es5O'
 
+#FORM CONFIG
+WTF_CSRF_ENABLED = True
+SECRET_KEY = 'you-will-never-guess'

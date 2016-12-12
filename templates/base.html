@@ -1,9 +1,12 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--
+<title>Broken Records - Official Site</title>
+<meta name="description" content="Official site of the Edinburgh-based band Broken Records. Third album 'Weights & Pulleys' Out Now!"/>
+<meta property="og:image" content="http://www.brokenrecordsband.com/static/img/releases-med1.png" />
+<link rel="canonical" href="http://www.brokenrecordsband.com/" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!--
     Formatted for readability
   -->
   <meta
@@ -15,49 +18,78 @@
       maximum-scale=1
     "
   />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-    <title>Broken Records Band - Weights & Pulleys</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='unsemantic-grid-responsive.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery.leanModal.min.js') }}"></script>
 
-    <!-- jQuery -->
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-
-    <!-- FontAwesome -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Bootstrap core CSS-->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"> 
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='unsemantic-grid-responsive.css') }}">
-
-
-
-    <!-- Bootstrap core JS -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
     {% block extra_head %}
     {% endblock extra_head %}
 </head>
-
 	<header>
-	<div class="grid-container">
-		<div class="header-container grid-parent">
-			<div class="header-image">
-			<img width="100%" src="{{ url_for('static', filename='img/br_logo_grey.png') }}"/>
+	
+	<script>
+	$(document).ready(function(){
+		$("#nav-mobile").html($("#nav-main").html());
+		$("#nav-trigger span").click(function(){
+			if ($("nav#nav-mobile ul").hasClass("expanded")) {
+				$("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
+				$(this).removeClass("open");
+			} else {
+				$("nav#nav-mobile ul").addClass("expanded").slideDown(250);
+				$(this).addClass("open");
+			}
+		});
+	});
+	</script>
+
+		<div class="header-container grid-container">
+			<div  class="grid-50">
+				<img id="logo" width="90%" src="{{ url_for('static', filename='img/br_logo_grey.png') }}"/>
 			</div>
+					<div id="navigation" class="grid-50">
+						<div id="social-icons" class="hide-on-mobile">
+							<ul>
+								<li><a href="https://twitter.com/broken_records"><img src="static/img/webicon-twitter-g.png"/></a></li>
+								<li><a href="https://www.facebook.com/brokenrecords"><img src="static/img/webicon-facebook-g.png"/></a></li>
+								<li><a href="http://instagram.com/brokenrecordsband"><img src="static/img/webicon-instagram-g.png"/></a></li>
+						</div>
+						<nav id="nav-main">
+							<ul>
+								<li><a href="#news">News</a></li>
+								<li><a href="#store">Store</a></li>
+								<li><a href="#tour">Tour</a></li>
+								<!--<li><a href="">Contact</a></li>-->
+							</ul>
+						</nav>
+					<div id="nav-trigger">
+						<span>Menu</span>
+					</div>
+					<nav id="nav-mobile"></nav>
+					</div>
+
+		<!--dividing line -->
+		<div class="grid-100"><hr></div>
+	
+
 		</div>
-	<div>
+		
 	</header>
+    <body>
+	<!--ga code-->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<body>
+	  ga('create', 'UA-6115082-1', 'brokenrecordsband.com');
+	  ga('require', 'displayfeatures');
+	  ga('send', 'pageview');
 
+	</script>
+	
+	
 <div class="container">
     {% if messages %}
         <div class="alert alert-danger">
@@ -69,7 +101,7 @@
             </ul>
         </div>
     {% endif %}
-
+		<div class="grid-container">
 
     {% block content %}
     {% endblock %}
