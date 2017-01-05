@@ -29,18 +29,18 @@ for url in redirect_urls:
 def show_entries():
   return render_template('splash.html')
 
-def show_entries():
-    db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
-    entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
+# def show_entries():
+#     db = get_db()
+#     cur = db.execute('select title, text from entries order by id desc')
+#     entries = cur.fetchall()
+#     return render_template('show_entries.html', entries=entries)
 
 def get_app():
     return app
 
 if __name__ == '__main__':
     app.config.from_object('config')
-    with app.app_context():
-        db.metadata.create_all(bind=db.engine)
-    #get_app().run(host='127.13.48.2', port=15000,debug=True)
-    get_app.run(debug=True, static_folder=static_folder)
+    # with app.app_context():
+    #     db.metadata.create_all(bind=db.engine)
+    get_app().run(host='127.13.48.2', port=15000,debug=True)
+    #get_app().run(debug=True, static_folder=static_folder)
