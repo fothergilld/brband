@@ -1,7 +1,9 @@
-from os.path import abspath, dirname, join
 from flask import Flask, redirect, request, render_template
+from flaskext.markdown import Markdown
+import yaml
 
 app = Flask(__name__)
+md = Markdown(app)
 
 redirect_urls = {
     '/old/': '/'
@@ -15,16 +17,8 @@ for url in redirect_urls:
 
 @app.route('/')
 def show_entries():
-  return render_template('splash.html')
-
-# def show_entries():
-#     db = get_db()
-#     cur = db.execute('select title, text from entries order by id desc')
-#     entries = cur.fetchall()
-#     return render_template('show_entries.html', entries=entries)
-
-def get_app():
-    return app
+    posts = yaml.load(file('content/posts.yaml', 'r'))
+    return render_template('home.html', posts=posts)
 
 if __name__ == '__main__':
     app.run()
