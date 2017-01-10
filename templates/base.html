@@ -19,9 +19,9 @@
     "
   />
 
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='unsemantic-grid-responsive.css') }}">
-<script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery.leanModal.min.js') }}"></script>
+<link rel=stylesheet type=text/css href="..{{ url_for('static', filename='style.css') }}">
+<link rel=stylesheet type=text/css href="..{{ url_for('static', filename='unsemantic-grid-responsive.css') }}">
+<script type="text/javascript" src="..{{ url_for('static', filename='scripts/jquery.leanModal.min.js') }}"></script>
 
     {% block extra_head %}
     {% endblock extra_head %}
@@ -45,7 +45,7 @@
 
 		<div class="header-container grid-container">
 			<div  class="grid-50">
-				<img id="logo" width="90%" src="{{ url_for('static', filename='img/br_logo_grey.png') }}"/>
+				<img id="logo" width="90%" src="..{{ url_for('static', filename='img/br_logo_600.png') }}"/>
 			</div>
 					<div id="navigation" class="grid-50">
 						<div id="social-icons" class="hide-on-mobile">

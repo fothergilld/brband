@@ -40,7 +40,7 @@ $(function() {
 			<h2>News</h2>
 			{% for post in posts %}
 				<h4>{{ post.title }}</h4>
-				<img class="block-on-mobile" width="200px" style="float:right;margin-left:20px;"src="{{ url_for('static', filename=post.banner) }}"/>
+				<img class="block-on-mobile" width="200px" style="float:right;margin-left:20px;"src="..{{ url_for('static', filename=post.banner) }}"/>
 				{{ post.body|markdown|safe }}
 				<hr>
 				<br>
@@ -190,7 +190,7 @@ $(function() {
 						<br>
 						<input type="hidden" name="currency_code" value="GBP">
 						<input type="image" id="ppal" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-												<img src="http://brokenrecordsband.com/static/img/pay-secu.png" style="display:block;width:35%;float:right"/>
+												<img src="static/img/pay-secu.png" style="display:block;width:35%;float:right"/>
 						<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 						</form>
 					</div>
