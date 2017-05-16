@@ -3,19 +3,12 @@ import os
 from flask import Flask, redirect, request, render_template
 from flaskext.markdown import Markdown
 import yaml
+from chalice import Chalice
 
-app = Flask(__name__)
+app = Chalice(app_name='brband')
+
+#app = Flask(__name__)
 md = Markdown(app)
-
-# redirect_urls = {
-#     '/old/': '/'
-# }
-
-# def redirect_url():
-#     return redirect(redirect_urls[request.url], 301)
-
-# for url in redirect_urls:
-#     app.add_url_rule(url, url, redirect_url)
 
 @app.route('/')
 def show_entries():
