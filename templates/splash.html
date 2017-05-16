@@ -29,7 +29,8 @@
 <script type="text/javascript">
 //track button clicks
 $(function() {
-	$('#go-1').on('click', function() {ga('send', 'event', 'product-button', 'click', 'item-1');});
+
+	$('#go-1').on('click', function() {window.snowplow('trackStructEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', '', '0.0');});
 	$('#go-2').on('click', function() {ga('send', 'event', 'product-button', 'click', 'item-2');});
 	$('#go-3').on('click', function() {ga('send', 'event', 'product-button', 'click', 'item-3');});
 });
