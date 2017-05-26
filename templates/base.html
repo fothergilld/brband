@@ -35,6 +35,8 @@ window.snowplow('newTracker', 'cf', 'd9zj8u9gf1xf9.cloudfront.net', { // Initial
 });
 
 window.snowplow('trackPageView');
+window.snowplow('setUserIdFromLocation','userid');
+
 </script>
 <!-- Snowplow stops plowing -->
     {% block extra_head %}
