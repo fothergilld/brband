@@ -42,5 +42,6 @@ if __name__ == '__main__':
     app.config.from_object('config')
     # with app.app_context():
     #     db.metadata.create_all(bind=db.engine)
-    get_app().run(host='127.13.48.2', port=15000,debug=True)
+    get_app().run(debug=True)
+    # get_app().run(host='127.13.48.2', port=15000,debug=True)
     #get_app().run(debug=True, static_folder=static_folder)
