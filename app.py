@@ -1,5 +1,5 @@
 
-from bull import app
+# from bull import app
 import os
 import jinja2
 from os.path import abspath, dirname, join
@@ -18,6 +18,8 @@ app.jinja_loader = my_loader
 redirect_urls = {
     '/old/': '/'
 }
+
+app = Flask(__name__)
 
 def redirect_url():
     return redirect(redirect_urls[request.url], 301)
