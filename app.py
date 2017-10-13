@@ -5,6 +5,9 @@ import jinja2
 from os.path import abspath, dirname, join
 from flask import Flask, redirect, request, render_template
 
+
+app = Flask(__name__)
+
 template_loc = os.path.abspath(os.path.join(os.path.split(os.path.abspath(__file__))[0], 'templates'))
 
 static_folder = os.path.abspath(os.path.join(os.path.split(os.path.abspath(__file__))[0], 'static'))
@@ -18,8 +21,6 @@ app.jinja_loader = my_loader
 redirect_urls = {
     '/old/': '/'
 }
-
-app = Flask(__name__)
 
 def redirect_url():
     return redirect(redirect_urls[request.url], 301)
