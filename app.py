@@ -1,5 +1,5 @@
 
-from bull import app, db
+from bull import app
 import os
 import jinja2
 from os.path import abspath, dirname, join
