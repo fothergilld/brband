@@ -3,11 +3,11 @@ import os
 from flask import Flask, redirect, request, render_template
 from flaskext.markdown import Markdown
 import yaml
-from chalice import Chalice
+# from chalice import Chalice
 
-app = Chalice(app_name='brband')
+# app = Chalice(app_name='brband')
+app = Flask(__name__)
 
-#app = Flask(__name__)
 md = Markdown(app)
 
 @app.route('/')
