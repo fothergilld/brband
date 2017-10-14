@@ -52,3 +52,4 @@ wsgi-request-logger==0.4.6
 WTForms==2.1
 zappa==0.32.1
 gunicorn
+chalice
